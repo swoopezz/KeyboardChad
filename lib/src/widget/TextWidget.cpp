@@ -3,14 +3,18 @@
 
 namespace tui {
 	TextWidget::TextWidget(const std::string& text) : text(text){};
-	void TextWidget::render(Window& w) {
-		int counter = 0;
+	void TextWidget::render(Window& w, int& x, int& y) {
 		for (char ch : text) {
-			w.pixelAt(counter, 0).pixelContent = ch;
-			counter++;
+			w.pixelAt(x, y).pixelContent = ch;
+			x++;
+			if (x > w.getWidth()) {
+				x = 0;
+				y += 1;
+			}
 		}
 	}
+
 	const std::string& TextWidget::toString() const {
-		return "fuck";
+		return "todo";
 	}
 }

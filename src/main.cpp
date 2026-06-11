@@ -10,8 +10,9 @@ int main() {
 	Window window = Window(std::make_shared<size::FullScreen>());
 	
 	window.setContent({
-		text("Zalypa"),
-		text("Vtoraya zalypa very long zalpa")
+		text("Very long mega text 42"),
+		text("Second texwot six seven eight forty tfasljfalk fj;jdfdsafas "),
+		text("Forty two eleven six twelve")
 	});
 	
 	window.render();

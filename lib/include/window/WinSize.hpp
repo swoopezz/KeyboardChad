@@ -17,12 +17,12 @@ private:
 public:
 	int get_width() override {
 		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-		return w.ws_row;
+		return w.ws_col;
 	}
 
 	int get_height() override {
 		ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-		return w.ws_col;
+		return w.ws_row;
 	}
 };
 

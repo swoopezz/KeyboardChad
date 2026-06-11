@@ -1,6 +1,7 @@
 #include "Pixel.hpp"
 #include <initializer_list>
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 #include <Window.hpp>
 
@@ -20,13 +21,23 @@ namespace tui {
 	}
 
 	Pixel& Window::pixelAt(int x, int y) {
-		return content[y * sz->get_width() + x];
+		
+		int loc = (sz->get_width() * y) + x;
+		if (loc >= content.size())
+			throw std::runtime_error("pixelAt: out of range!");
+
+		return content[loc];
 	}
 	
 	void Window::render() {
-		
-		for (const Element e : elements) {
-			e->render(*this);
+
+		int x = 0;
+		int y = 0;
+
+		for (int i = 0; i < elements.size(); i++) {
+			elements[i]->render(*this, x, y);
+			x = 0;
+			y += 1;
 		}
 
 		for (const Pixel& p : content) {
