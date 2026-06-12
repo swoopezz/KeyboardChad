@@ -36,24 +36,34 @@ namespace tui {
 		return content[loc];
 	}
 	
+	void renderPixelWithStyle(const Pixel& pixel) {
+
+		if (pixel.isBold) std::cout << "\x1B[1m";
+		if (pixel.isInvert) std::cout << "\x1B[7m";
+		if (pixel.isUnderl) std::cout << "\x1B[4m";
+		if (pixel.isItal) std::cout << "\x1B[3m";
+		if (pixel.isStrike) std::cout << "\x1B[9m";
+
+		std::cout << pixel.pixelContent;
+		std::cout << "\x1B[0m";
+	}
+
 	void Window::render() {	
 		int x = 0; int y = 1;
 
 		if (needUpdate()) {
 			content.clear();
 			content = std::vector<Pixel>(sz->get_width()*sz->get_height());
-
-			pixelAt(1, 1).pixelContent = 'U';
 		} 
 		lastWidht = sz->get_width(); lastHeight = sz->get_height();
 		
 		for (int i = 0; i < elements.size(); i++) {
 			elements[i]->render(*this, x, y);
 			if (y <= getHeight()) y += 1;
-			
 			x = 0;
 		}
-		for (const Pixel& p : content) std::cout << p.pixelContent;
+
+		for (const Pixel& p : content) renderPixelWithStyle(p);
 		std::cout << std::endl;
 	}
 

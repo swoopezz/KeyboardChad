@@ -21,14 +21,12 @@ namespace tui {
 
 		return padding(str, (width - str.size()) / 2);	
 	}
-
-
 	void CenterWidgetX::render(Window& w, int& x, int& y) {
 		std::string str = element->toString(w);
 		int cachedWidth = w.getWidth();	
 		for (int i = 0; i < str.size(); i+= cachedWidth) {
 			for (char ch : center(str.substr(i, cachedWidth), cachedWidth)) {
-				w.pixelAt(x, y).pixelContent = ch;	
+				w.pixelAt(x, y).pixelContent = ch;
 				x++;
 				if (x >= cachedWidth && y < w.getHeight()) {
 					x = 0;

@@ -13,11 +13,10 @@ add_library(
 
 file(GLOB INCLUDE
     include/elements
-	include/pixel
-	include/widget
-	include/window
-	include/loop
-	include
+    include/pixel
+    include/widget
+    include/window
+    include
 )
 target_include_directories(
     ${PROJECT_NAME}

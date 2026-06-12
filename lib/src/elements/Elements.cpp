@@ -2,12 +2,17 @@
 #include "CenterWidget.hpp"
 #include "Separator.hpp"
 #include "TextWidget.hpp"
+#include <Input.hpp>
 #include <Elements.hpp>
 #include <memory>
 
 namespace tui {
-	Element text(const std::string& text) {
+		Element text(const std::string& text) {
 		return std::make_shared<TextWidget>(text);
+	}
+
+	Element input(const std::string& text) {
+		return std::make_shared<Input>(text);
 	}
 
 	Element centerX(Element elem) {

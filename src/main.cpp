@@ -2,6 +2,7 @@
 #include "WinSize.hpp"
 #include "Window.hpp"
 #include "Util.hpp"
+#include "Input.hpp"
 #include <memory>
 
 int main() {	
@@ -10,23 +11,22 @@ int main() {
 
 	Window window = Window(std::make_shared<size::FullScreen>());
 	const std::string generated = 
-		"some text edit fact new object "
-		"light window crow elbrus cow "
-		"comma delete fork evil corporation";
+		"make each through begin buttom but think encrease live";
 	
+	auto input = std::make_shared<Input>(generated);
+
 	window.setContent({
 		centerX(text("KeyboardChad")),
-
-		centerABS(text(generated)),
+	
+		centerY(input),
 
 		buttom(centerX(text("[esc] exit    [enter] restart")))
 	});
-
 	char key;
 
 	util::enableAlterScr();
 	util::hideCursor();
-
+	
 	while (true) {
 		window.render();
 		
@@ -36,6 +36,7 @@ int main() {
 			util::showCursor();
 			break;
 		}
+		input->press(window, key);
 	}
 	return 0;
 }

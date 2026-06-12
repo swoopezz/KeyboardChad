@@ -10,6 +10,7 @@ using Element = std::shared_ptr<Widget>;
 using Elements = std::vector<Element>;
 
 Element text(const std::string&);
+Element input(const std::string&);
 
 Element centerX(Element);
 Element centerY(Element);
