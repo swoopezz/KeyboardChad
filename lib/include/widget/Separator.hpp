@@ -11,7 +11,6 @@ private:
 public:
 	Separator();
 	void render(Window& w, int& x, int& y) override;
-	virtual std::string toString(Window& w) const override;
 	~Separator() {}
 };
 }

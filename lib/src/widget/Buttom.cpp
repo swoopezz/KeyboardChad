@@ -9,8 +9,4 @@ namespace tui {
 		y = w.getHeight() - 1;
 		element->render(w, x, y);
 	}
-
-	std::string Buttom::toString(Window& w) const {
-		return element->toString(w);
-	}
 }

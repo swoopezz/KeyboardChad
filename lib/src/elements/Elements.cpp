@@ -7,7 +7,7 @@
 #include <memory>
 
 namespace tui {
-		Element text(const std::string& text) {
+	Element text(const std::string& text) {
 		return std::make_shared<TextWidget>(text);
 	}
 
@@ -33,5 +33,9 @@ namespace tui {
 	
 	Element buttom(Element elem) {
 		return std::make_shared<Buttom>(elem);
+	}
+
+	Element operator|(Element elem, Element(*func)(Element)) {
+		return func(elem);
 	}
 }

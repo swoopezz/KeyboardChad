@@ -10,7 +10,6 @@ private:
 public:
 	Buttom(Element& elem);
 	void render(Window& w, int& x, int& y) override;
-	std::string toString(Window& w) const override;
 	~Buttom() {}
 };
 }

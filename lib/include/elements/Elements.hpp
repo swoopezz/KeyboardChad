@@ -18,5 +18,6 @@ Element centerABS(Element);
 
 Element separator();
 Element buttom(Element);
+Element operator|(Element elem, Element(*func)(Element));
 
 }

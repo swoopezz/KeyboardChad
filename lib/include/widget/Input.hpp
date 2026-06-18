@@ -6,28 +6,20 @@ namespace tui {
 
 class Input: public Widget {
 private:
-	const std::string text;
-	
+	const std::string hint; 
+
 	int cursorPosition = 0;
 	std::string input = "";
-
-	long startTimeMs = 0;
-	long endTimeMs = 0;
-	int missCount = 0;
-	void inputLogic(Window& w, int current, int x, int y);
+	bool isActive  = false;
 public:
-	Input(const std::string& text);
-	void render(Window& w, int& x, int& y) override;
-	
-	double getWpm();
-	long startTime();
-	long endTime();
-	const std::string& getText() const;	
+	Input(const std::string& hint) :
+		 hint(hint) {};
 
-	int getMissCount();
-	bool isEnd();
-	virtual std::string toString(Window& w) const override;
-	void press(Window& w, char c);
+	void render(Window& w, int& x, int& y) override;
+	void press(char key);	
+
+	const std::string& getText() const { return input; };
+
 	~Input() {}
 };
 }
