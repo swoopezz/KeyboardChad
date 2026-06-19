@@ -53,9 +53,12 @@ namespace tui {
 
 		if (needUpdate()) {
 			content.clear();
-			content = std::vector<Pixel>(sz->get_width()*sz->get_height());
+			content = std::vector<Pixel>(
+					sz->get_width()*sz->get_height()
+			);
 		} 
-		lastWidht = sz->get_width(); lastHeight = sz->get_height();
+		lastWidht = sz->get_width();
+		lastHeight = sz->get_height();
 		
 		for (int i = 0; i < elements.size(); i++) {
 			elements[i]->render(*this, x, y);
@@ -67,11 +70,12 @@ namespace tui {
 		std::cout << std::endl;
 	}
 
-	void Window::setContent(Elements& newElements) {
-		elements = newElements;
+	void Window::setContent(Elements& newElems) {
+		elements = newElems;
 	}
-	void Window::setContent(std::initializer_list<Element> newElements) {
-		elements = newElements;
+
+	void Window::setContent(std::initializer_list<Element> newElems) {
+		elements = newElems;
 	}
 
 }

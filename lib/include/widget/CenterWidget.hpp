@@ -11,6 +11,9 @@ private:
 public:
 	CenterWidgetX(Element& element) : element(element) {};
 	void render(Window& w, int& x, int& y) override;
+	int getWidth() override;
+	int getHeight() override;
+
 	~CenterWidgetX() {}
 };
 
@@ -20,6 +23,9 @@ private:
 public:
 	CenterWidgetY(Element& element) : element(element) {};
 	void render(Window& w, int& x, int& y) override;
+	int getWidth() override;
+	int getHeight() override;
+
 	~CenterWidgetY() {}
 };
 }

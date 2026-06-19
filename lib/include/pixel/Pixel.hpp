@@ -10,6 +10,13 @@ struct Pixel {
 	bool isStrike = false;
 
 	Pixel() = default;
-	Pixel(const char content) : pixelContent(content) {}	
+	Pixel(const char content) : pixelContent(content) {}
+	void clearStyles() {
+		isBold   = false;
+		isItal   = false;
+		isInvert = false;
+		isUnderl = false;
+		isStrike = false;
+	}
 };
 } // namespace

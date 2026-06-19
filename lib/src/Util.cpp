@@ -47,6 +47,8 @@ namespace tui::util {
 		std::cout << "\x1B[?24h";
 	}
 
-
+	void clearScreen() {
+		std::cout << "\x1B[2J";
+	}
 
 }

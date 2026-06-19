@@ -14,4 +14,12 @@ namespace tui {
 		}
 	}
 
+	int TextWidget::getWidth() {
+		return text.size();
+	}
+
+	int TextWidget::getHeight() {
+		return text.size();
+	}
+
 }

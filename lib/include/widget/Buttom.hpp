@@ -10,6 +10,8 @@ private:
 public:
 	Buttom(Element& elem);
 	void render(Window& w, int& x, int& y) override;
+	int getWidth() override;
+	int getHeight() override;
 	~Buttom() {}
 };
 }

@@ -5,4 +5,5 @@ namespace tui::util {
 	void disablAnterScr();
 	void hideCursor();
 	void showCursor();
+	void clearScreen();
 }

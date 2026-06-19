@@ -9,4 +9,12 @@ namespace tui {
 		y = w.getHeight() - 1;
 		element->render(w, x, y);
 	}
+
+	int Buttom::getWidth() {
+		return element->getWidth();
+	}
+
+	int Buttom::getHeight() {
+		return element->getHeight();
+	}
 }

@@ -14,7 +14,11 @@ public:
 	using Elements = std::vector<Element>;
 
 	Widget() = default;
-	virtual void render(Window& w, int& x, int& y) = 0 ;	
+	
+	virtual void render(Window& w, int& x, int& y) = 0 ;
+	virtual int getWidth()  = 0;	
+	virtual int getHeight() = 0;
+
 	virtual ~Widget() = default;
 };
 
