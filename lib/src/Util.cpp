@@ -50,5 +50,9 @@ namespace tui::util {
 	void clearScreen() {
 		std::cout << "\x1B[2J";
 	}
+    
+    void moveCursor(int x, int y) {
+        std::cout << "\x1B[" << y << ";" << x << "H";
+    }
 
 }

@@ -17,9 +17,17 @@ private:
 	WinSize sz;
 	
 	std::vector<Pixel> content;
+	std::vector<Pixel> oldContent;
 
 	int lastWidht  = 0;
 	int lastHeight = 0;
+
+    void prepareContent();
+    void drawElements();
+    void renderPixels();
+    void cacheSize();
+    void updateContent();
+    Pixel& oldPixelAt(int x, int y);
 public:
 	Window(WinSize);
 
@@ -33,6 +41,7 @@ public:
 	void setContent(Elements& content);
 	
 	void render();
+    void renderDiff();
 	const std::string& toString() const;
 	
 };

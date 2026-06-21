@@ -33,7 +33,7 @@ int main() {
 	util::enableAlterScr();
 	util::hideCursor();
 	while (true) {
-		window.render();
+		window.renderDiff();
 		char ch = util::getch();
 
 		if (ch == Key::ESC) {

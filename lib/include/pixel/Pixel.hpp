@@ -18,5 +18,13 @@ struct Pixel {
 		isUnderl = false;
 		isStrike = false;
 	}
+    bool operator==(const Pixel& rhs) const = default;/*{
+        return this->pixelContent == rhs.pixelContent 
+            && this->isBold == rhs.isBold
+            && this->isItal == rhs.isItal
+            && this->isInvert == rhs.isInvert
+            && this->isUnderl == rhs.isUnderl
+            && this->isStrike == rhs.isStrike;
+    }*/
 };
 } // namespace
