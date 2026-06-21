@@ -4,12 +4,12 @@
 #include <vector>
 #include <string>
 
-class Dict {
+class WordList {
 private:
 	std::vector<std::string> dict;
 
 public:
-	explicit Dict(const std::string& path) {
+	explicit WordList(const std::string& path) {
 		std::ifstream file(path);
 		if (file.fail())
 			throw std::runtime_error("cannot open dict file: " 
@@ -29,7 +29,7 @@ public:
 		return dict[dist(engine)];
 	}
 
-	std::string generateSentence(Dict& dict, int len) {
+	std::string generateSentence(WordList& dict, int len) {
 		std::string words;
 
 		for (int i = 0; i <= len; i++) {

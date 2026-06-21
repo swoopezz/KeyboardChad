@@ -7,12 +7,23 @@ else
 	exit 1
 fi
 
-echo -n "Do you want to install kbchad? [y/N] "
-read -r input
+echo -n "Do you want to install kbchad? [Y/n] "
+read -r kbchad
+echo -n "Do you want to install wordlist? [Y/n] "
+read -r wordlist
 
-if [ "$input" == "Y" ] || [ "$input" == "y" ]; then
-	sudo mv build/kbchad /usr/local/bin/ && echo "kbchad was installed."
+if [ "$kbchad" == "n" ] || [ "$kbchad" == "N" ]; then
+    echo "Install canceled."
 else
-	echo "Install canceled."
+    mkdir -p /usr/local/bin/
+	sudo cp build/kbchad /usr/local/bin/ && echo "kbchad was installed."
+fi	
+
+if [ "$wordlist" == "n" ] || [ "$wordlist" == "N" ]; then
+    echo "Warning: you declined to install the wordlist"
+else
+    mkdir -p $HOME/.local/share/kbchad/wordlist
+	sudo cp static/english.txt $HOME/.local/share/kbchad/wordlist && 
+        echo "wordlist was installed."
 fi	
 

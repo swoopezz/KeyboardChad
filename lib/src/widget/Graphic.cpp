@@ -4,21 +4,18 @@
 
 namespace tui {
     void Graphic::render(Window& w, int& x, int& y) {
-        
-        int height = w.getHeight() / 2;
+        int height = w.getHeight()-1;
         int width = params.size();
-
-        //  0, 1, 2
-        for (int _x = 0; _x < width; _x++) {
-            // 1, 2, 3
-            int value = std::min(params.at(_x), height);
-            int counter = 0;
-            for (int _y = height; _y >= value; _y--) {
-                if (counter >= value) continue;
-                w.pixelAt(_x, _y).isInvert = true;
-                counter++;
+        
+        for (int row = 0; row < width; row++) {
+            int value = std::min(params.at(row), height);
+            int _y = height;
+            for (int _ = 0; _ < value; _++) {
+                w.pixelAt(row, _y).isInvert = true;
+                _y--;
             }
         }
+
     }
 
     int Graphic::getWidth() { return 0; }

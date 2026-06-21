@@ -3,58 +3,24 @@
 #include "WinSize.hpp"
 #include "Window.hpp"
 #include "Util.hpp"
-#include "Dict.hpp"
+#include "WordList.hpp"
 #include "Keys.hpp"
-#include <filesystem>
-#include <memory>
-#include <optional>
-#include <pwd.h>
+#include "FileUtil.hpp"
 
-bool fileExists(const std::string& path) {
-	std::ifstream f(path);
-	return f.good();
-}
+void initSettings();
 
-void mkdir(std::filesystem::path& path) {
-	namespace fs = std::filesystem;
-    fs::create_directories(path);
-}
+int main() {
+    
+    using namespace tui;
+    using namespace utils;
 
-void copy(std::filesystem::path& from, std::filesystem::path& to) {
-	std::filesystem::copy_file(from, to);
-}
-
-std::optional<std::filesystem::path> getHome() {
-	if (const char* home = getenv("HOME")) {
-		if (home[0] != '\0')
-			return std::filesystem::path(home);
-	}
-
-	struct passwd* pw = getpwuid(getuid());
-	if (pw && pw->pw_dir && pw->pw_dir[0] != '\0') {
-        return std::filesystem::path(pw->pw_dir);
-    }
-		
-	return std::nullopt;
-}
-
-void initSettings() {
-	const std::string p = getHome()->string() + "/.local/share/kbchad";
-	std::filesystem::path settingPath(p);
-
-	mkdir(settingPath);
-	copy(std::filesystem::path("static/english.txt"), 
-			std::filesystem::path(p + "/"));
-}
-
-using namespace tui;
-int main() {	
-/*	if (!fileExists(getHome()->string() + "/.local/share/kbchad"))
+	if (!fileExists(getHome()->string() + "/.local/share/kbchad/wordlist"))
         initSettings();
 
-	auto window= Window(std::make_shared<size::FullScreen>());
-	Dict dict = Dict( getHome()->string() 
-            + "/.local/share/kbchad/english.txt");	
+	auto window = Window(std::make_shared<size::FullScreen>());
+
+	WordList dict = WordList(utils::getHome()->string() 
+            + "/.local/share/kbchad/wordlist/english.txt");
 	auto input = std::make_shared<Input>(
 			dict.generateSentence(dict, 10));
 
@@ -83,14 +49,17 @@ int main() {
 		}
 		input->press(ch);
 	}
-*/
-    auto window = Window(std::make_shared<size::FullScreen>());
-    window.setContent({
-        graphic({1, 2, 3, 4, 5, 6, 7})
-    });
+    return 0;
+}
 
-    window.render();
+void initSettings() {
+	const std::string p = utils::getHome()->string() + "/.local/share/kbchad/wordlist";
+	std::filesystem::path settingPath(p);
 
-	return 0;
+    utils::mkdir(settingPath);
+    if (!utils::fileExists("static/english.txt"))
+        return;
+	copy(std::filesystem::path("static/english.txt"), 
+			std::filesystem::path(p + "/"));
 }
 
