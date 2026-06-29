@@ -71,7 +71,7 @@ int main() {
 		} else {
 			if (endTypeTime == 0) {
 				setCurrentTimeMs(endTypeTime);
-				util::clearScr();
+				stats.render();
 			}
 			
 			float wpm = config::WORD_COUNT * 60000.0 / 
